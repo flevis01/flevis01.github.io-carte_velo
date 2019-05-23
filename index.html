@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cyclocity Toyama</title>
+	<link type="text/css" rel="stylesheet" href="projet_3.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+</head>
+
+<body>
+	<h1>Location de Vélo à Toyama</h1>
+	
+	<div class="diapo">
+		<div id="diapo1"></div>
+		<!--ajout des autres slides-->
+	</div>
+	
+	<div id="flex">
+		<div id="mapid"></div>
+		<form id="form">
+			<p>
+				Adresse : <span id ="adress"></span> <br>
+				Etat : <span id="etat"></span> <br>
+				<span id="place">25</span> places <br>
+				<span id="restant">25</span> vélos disponibles
+			</p>
+	
+			<label for="nom">Votre Nom</label> : <input type="text" name="nom" id="nom" required placeholder="Anquetil"/><br>
+			<label for="prénom">Votre Prénom</label> : <input type="text" name="prénom" id="prénom" required placeholder="Jacques"/>
+		
+			<!--ajout du bouton pour la signature-->
+		</form>
+	</div>
+	<div>
+		<!--ajout d'un cadre de réservation-->
+	</div>
+	<script src="projet_3.js"></script>
+	<script src ="class_station.js"></script>
+</body>
+</html>
