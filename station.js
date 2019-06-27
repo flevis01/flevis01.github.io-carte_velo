@@ -21,20 +21,32 @@ ajaxGet("https://api.jcdecaux.com/vls/v3/stations?contract=toyama", function (re
 		console.log(infos[i]);
 	let station = new Station(infos[i].address,infos[i].status,infos[i].totalStands.capacity,infos[i].totalStands.availabilities.bikes);
 	console.log(station.decrire());
+		let position = new Positions(infos[i].position.latitude, infos[i].position.longitude);
+		console.log(position.afficher())
 	}
+	
 });
 
 class Station {
-	constructor (adresse, etat, places, disponibles){
-		this.adresse = adresse;
-		this.etat = etat;
-		this.places = places;
-		this.disponibles = disponibles;
+	constructor (address, status, capacity, disponibles){
+		this.address = address;
+		this.status = status;
+		this.capacity = capacity;
+		this.availabilities = availabilities;
 	}
 	
 	decrire(){
-		return `Adresse : ${this.adresse} Etat : ${this.etat} Places : ${this.places} Vélos Disponibles : ${this.disponibles}`
+		return `Adresse : ${this.address} Etat : ${this.status} Places : ${this.capacity} Vélos Disponibles : ${this.availabilities}`
 	}
 }
 
-
+class Positions {
+	constructor(latitude, longitude){
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	
+	afficher(){
+		return L.marker([this.latitude, this.longitude]).addTo(mymap);
+	}
+}

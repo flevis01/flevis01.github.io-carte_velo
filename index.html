@@ -16,7 +16,7 @@
 	<h1>Location de Vélo à Toyama</h1>
 	
 	<div class="diapo">
-		<div id="diapo1"></div>
+		<div id="diapo1"><img name="pics_1" src ="station.jpg" alt="station vélo"/></div>
 		<!--ajout des autres slides-->
 	</div>
 	
@@ -25,13 +25,13 @@
 		<form id="form">
 			<p>
 				Adresse : <span id ="adress"></span> <br>
-				Etat : <span id="etat"></span> <br>
-				<span id="place">25</span> places<br>
-				<span id="restant">25</span> vélos disponibles
+				Etat : <span id="status"></span> <br>
+				<span id="capacity">25</span> places<br>
+				<span id="availabilities">25</span> vélos disponibles
 			</p>
 	
-			<label for="nom">Votre Nom</label> : <input type="text" name="nom" id="nom" required placeholder="Anquetil"/><br>
-			<label for="prénom">Votre Prénom</label> : <input type="text" name="prénom" id="prénom" required placeholder="Jacques"/>
+			<label for="name">Votre Nom</label> : <input type="text" name="name" id="name" required placeholder="Anquetil"/><br>
+			<label for="firstName">Votre Prénom</label> : <input type="text" name="firstName" id="firstName" required placeholder="Jacques"/>
 		
 			<!--ajout du bouton pour la signature-->
 		</form>
@@ -39,7 +39,7 @@
 	<div>
 		<!--ajout d'un cadre de réservation-->
 	</div>
-	<script src="projet_3.js"></script>
+	<script src="map.js"></script>
 	<script src ="station.js"></script>
 </body>
 </html>
