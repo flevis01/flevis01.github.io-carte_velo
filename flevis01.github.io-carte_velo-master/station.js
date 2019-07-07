@@ -1,3 +1,4 @@
+
 function ajaxGet(url, callback) {
     var req = new XMLHttpRequest();
     req.open("GET", "https://api.jcdecaux.com/vls/v3/stations?contract=toyama&apiKey=dc7082d58f08aa7c16d08eabbf3b04e0d79e2084");
