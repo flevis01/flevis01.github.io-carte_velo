@@ -1,20 +1,35 @@
-<<<<<<< HEAD:flevis01.github.io-carte_velo-master/map.js
-// JavaScript Document
-let mymap = L.map('mapid').setView([36.7000, 137.21667], 13);
+class Map {
+	constructor(){
+		this.mymap = null;
+	}
+	onClick(){
+		document.getElementById("address").textContent = this.address;
+		document.getElementById("status").textContent = this.status;
+		document.getElementById("capacity").textContent = this.capacity;
+		document.getElementById("availabilities").textContent = this.availabilities;
+	};
+	
+	load() {
+		this.mymap = L.map('mapid').setView([36.7000, 137.21667], 13);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoiZmxldmlzIiwiYSI6ImNqdmhyajZzMjA2N2I0M3BudTkzZjYycTMifQ.dlZ4XzAxq2uUDN5bKhhZiA'
-=======
-// JavaScript Document
-let mymap = L.map('mapid').setView([36.7000, 137.21667], 13);
-
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoiZmxldmlzIiwiYSI6ImNqdmhyajZzMjA2N2I0M3BudTkzZjYycTMifQ.dlZ4XzAxq2uUDN5bKhhZiA'
->>>>>>> a8b0d55508c8e8a6bf74d9f7cd3f76cb2d981650:map.js
-}).addTo(mymap);
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		maxZoom: 18,
+		id: 'mapbox.streets',
+		accessToken: 'pk.eyJ1IjoiZmxldmlzIiwiYSI6ImNqdmhyajZzMjA2N2I0M3BudTkzZjYycTMifQ.dlZ4XzAxq2uUDN5bKhhZiA'
+		}).addTo(this.mymap);
+		
+		let ajax = new Ajaxget();
+		ajax.ajaxGet("https://api.jcdecaux.com/vls/v3/stations?contract=toyama", (reponse) => {
+		let infos = JSON.parse(reponse);
+		for (let i=0; i < infos.length; i++){
+			console.log(infos[i]);
+			let station = new Station(infos[i].address,infos[i].status,infos[i].totalStands.capacity,infos[i].totalStands.availabilities.bikes);
+			console.log(station.decrire());
+			let marker = L.marker([infos[i].position.latitude, infos[i].position.longitude]).addTo(this.mymap);
+			let markerElt = new Map();
+			marker.addEventListener("click", markerElt.onClick());
+		}
+		});
+	}
+};
