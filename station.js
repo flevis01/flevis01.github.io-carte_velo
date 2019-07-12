@@ -1,5 +1,5 @@
 class Station {
-	constructor (address, status, capacity, disponibles){
+	constructor (address, status, capacity, availabilities){
 		this.address = address;
 		this.status = status;
 		this.capacity = capacity;

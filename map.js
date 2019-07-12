@@ -2,12 +2,6 @@ class Map {
 	constructor(){
 		this.mymap = null;
 	}
-	onClick(){
-		document.getElementById("address").textContent = this.address;
-		document.getElementById("status").textContent = this.status;
-		document.getElementById("capacity").textContent = this.capacity;
-		document.getElementById("availabilities").textContent = this.availabilities;
-	};
 	
 	load() {
 		this.mymap = L.map('mapid').setView([36.7000, 137.21667], 13);
@@ -22,13 +16,18 @@ class Map {
 		let ajax = new Ajaxget();
 		ajax.ajaxGet("https://api.jcdecaux.com/vls/v3/stations?contract=toyama", (reponse) => {
 		let infos = JSON.parse(reponse);
+		console.log(infos);
 		for (let i=0; i < infos.length; i++){
 			console.log(infos[i]);
 			let station = new Station(infos[i].address,infos[i].status,infos[i].totalStands.capacity,infos[i].totalStands.availabilities.bikes);
 			console.log(station.decrire());
 			let marker = L.marker([infos[i].position.latitude, infos[i].position.longitude]).addTo(this.mymap);
-			let markerElt = new Map();
-			marker.addEventListener("click", markerElt.onClick());
+			marker.addEventListener("click", () => {
+				document.getElementById("address").textContent = station.address;
+				document.getElementById("status").textContent = station.status;
+				document.getElementById("capacity").textContent = station.capacity;
+				document.getElementById("availabilities").textContent = station.availabilities;
+			});
 		}
 		});
 	}
